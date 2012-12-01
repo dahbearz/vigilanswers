@@ -1,10 +1,8 @@
 class ReportsController < ApplicationController
-
   def index
-    render :text => 'hi'
+    @reports = Report.most_relavant(params)
   end
 
   def show
-    @reports = Report.most_relavant(params)
   end
 end

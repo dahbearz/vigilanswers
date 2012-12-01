@@ -1,6 +1,7 @@
-class Report < Authlogic::Session::Base
+class Report < ActiveRecord::Base
   belongs_to :category
-
+  has_one :location
+  
   def calculate_score
     return (@vote - 1) / (refresh_hour_age + 2)**(1.8)
   end
