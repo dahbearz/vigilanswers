@@ -11,11 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121201193024) do
+ActiveRecord::Schema.define(:version => 20121201195400) do
 
   create_table "locations", :force => true do |t|
     t.integer "latitude",  :limit => 8
     t.integer "longitude", :limit => 8
+    t.string  "address"
   end
 
   create_table "reports", :force => true do |t|
