@@ -1,0 +1,36 @@
+$center_width: 750px;
+$page_bg: #ccc;
+$center_bg: #EEE;
+$text_color: #6D6344;
+$glow_color: white;
+$glow_size: 50px;
+* {
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  background: $page_bg;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  font-family: 'Droid Sans', sans-serif;
+  color: $text_color;
+}
+#center {
+  position: relative;
+  padding: 0;
+  margin: 0 auto;
+  width: $center_width;
+  height: 100%;
+  min-height: 100%;
+  background: $center_bg;
+  border-width: 0px 1px;
+  border-style: solid;
+  border-color: white;
+  box-shadow: 0px 0px $glow_size $glow_color;
+}
+#map-holder {
+  width: $center_width;
+  height: 300px;
+}
