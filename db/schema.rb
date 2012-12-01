@@ -11,11 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121201175958) do
+ActiveRecord::Schema.define(:version => 20121201191939) do
 
   create_table "locations", :force => true do |t|
     t.integer "latitude",  :limit => 8
     t.integer "longitude", :limit => 8
+  end
+
+  create_table "reports", :force => true do |t|
+    t.string  "title"
+    t.integer "score"
+    t.integer "location_id"
+    t.text    "description"
+    t.boolean "resolved"
+    t.integer "longitude"
+    t.integer "latitude"
   end
 
   create_table "sessions", :force => true do |t|
