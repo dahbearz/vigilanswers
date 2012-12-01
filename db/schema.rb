@@ -1,4 +1,4 @@
-# encoding: UTF-8
+ # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,8 +10,13 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
+ActiveRecord::Schema.define(:version => 20121201195952) do
 
-ActiveRecord::Schema.define(:version => 20121201195400) do
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "locations", :force => true do |t|
     t.integer "latitude",  :limit => 8
@@ -28,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20121201195400) do
     t.integer "longitude"
     t.integer "latitude"
     t.integer "report_hour_age"
+    t.integer "category_id"
   end
 
   create_table "sessions", :force => true do |t|

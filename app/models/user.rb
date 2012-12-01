@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
     c.login_field = :username
   end
 
-  attr_accessible :username, :email,:password, :password_confirmation
+  attr_accessible :username, :email, :password, :password_confirmation
 end
