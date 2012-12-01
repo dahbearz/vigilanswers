@@ -1,0 +1,15 @@
+<div style="text-align:center">
+  <%= form_for @report do |f| %>
+	  <%= f.label :title, 'Event Title' %>
+	  <%= f.text_field :title %><br />
+	  
+	  <%= fields_for f.location do |l| %>
+	    <%= l.label :address, 'Event Location' %>
+	    <%= l.text_field :address, :placeholder => "e.g. 123 Main St Atlanta GA" %><br />
+	  <% end %>
+	  
+	  <%= f.label :decription, 'Event Description' %>
+	  <%= f.text_area :description, :cols => 15, :rows => 5 %><br />
+	  <%= f.submit %>
+  <% end %>
+</div>

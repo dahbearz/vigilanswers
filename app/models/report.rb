@@ -1,6 +1,8 @@
-class Report < Authlogic::Session::Base
+class Report < ActiveRecord::Base
   belongs_to :category
-  has_one :location
+  belongs_to :location
+  
+  validates_presence_of :title, :location_id
   
   def calculate_score
     return (@vote - 1) / (@report_hour_age + 2)**(1.8)

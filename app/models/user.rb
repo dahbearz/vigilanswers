@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < Authlogic::Session::Base
   acts_as_authentic do |c|
     c.login_field = :username
   end
