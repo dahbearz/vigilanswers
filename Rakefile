@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Crimemopper::Application.load_tasks
+Vigilanswers::Application.load_tasks
