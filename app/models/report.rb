@@ -1,12 +1,12 @@
 class Report < ActiveRecord::Base
   belongs_to :category
   has_one :location
-  
+
   def calculate_score
     return (@vote - 1) / (refresh_hour_age + 2)**(1.8)
   end
 
-  def most_relavant(params)
+  def self.most_relavant(params)
     list = scoped
     list = list.where("title like ?", params[:title])
     list = list.where("location_id IN (:location)", :location => Location.near([params[:lat],params[:lon]],params[:range]))
