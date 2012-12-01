@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121201191939) do
+ActiveRecord::Schema.define(:version => 20121201193024) do
 
   create_table "locations", :force => true do |t|
     t.integer "latitude",  :limit => 8
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20121201191939) do
     t.boolean "resolved"
     t.integer "longitude"
     t.integer "latitude"
+    t.integer "report_hour_age"
   end
 
   create_table "sessions", :force => true do |t|
