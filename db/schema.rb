@@ -19,9 +19,21 @@ ActiveRecord::Schema.define(:version => 20121201193947) do
     t.datetime "updated_at", :null => false
   end
 
+
   create_table "locations", :force => true do |t|
     t.integer "latitude",  :limit => 8
     t.integer "longitude", :limit => 8
+  end
+
+  create_table "reports", :force => true do |t|
+    t.string  "title"
+    t.integer "score"
+    t.integer "location_id"
+    t.text    "description"
+    t.boolean "resolved"
+    t.integer "longitude"
+    t.integer "latitude"
+    t.integer "report_hour_age"
   end
 
   create_table "sessions", :force => true do |t|
