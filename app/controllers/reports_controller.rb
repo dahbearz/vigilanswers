@@ -1,5 +1,4 @@
 class ReportsController < ApplicationController
-  
   def new
     @report = Report.new
   end
@@ -14,13 +13,12 @@ class ReportsController < ApplicationController
       render :action => :new
     end
   end
-  
+
   def index
-    render :text => 'hi'
+    @reports = Report.most_relavant(params)
   end
 
   def show
-    @reports = Report.most_relavant(params)
   end
   
   

@@ -32,9 +32,9 @@ group :production, :staging do
   gem 'pg'
 end
 
-
 gem 'jquery-rails'
 gem 'geocoder'
+gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
