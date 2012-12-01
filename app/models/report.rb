@@ -1,4 +1,4 @@
-class Report < Authlogic::Session::Base
+class Report < ActiveRecord::Base
   belongs_to :category
   has_one :location
   
