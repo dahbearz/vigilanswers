@@ -16,7 +16,9 @@ class ReportsController < ApplicationController
   end
 
   def index
-    @reports = Report.most_relavant(params)
+    loc = Geocoder.search(request.remote_ip)[0]
+    @coords = {latitude: loc.latitude, longitude: loc.longitude}
+    @reports = Report.most_relavant(params, @coords)
     respond_with @reports
   end
 
@@ -25,5 +27,10 @@ class ReportsController < ApplicationController
     respond_with @report
   end
 
+  def update
+    @report = Report.find(params[:report][:id])
+    @report.update_attributes(params[:report])
+    respond_with @report
+  end
 
 end

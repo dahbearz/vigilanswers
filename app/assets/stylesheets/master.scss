@@ -40,3 +40,13 @@ input[type='text'] {
   width: 25%;
   outline: none;
 }
+#report-list li {
+  list-style-type: none;
+  overflow: hidden;
+  background: white;
+  border-bottom: 2px solid #79C;
+  img {
+    width: 100px;
+    vertical-align: middle;
+  }
+}
