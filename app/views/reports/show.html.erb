@@ -1,14 +1,21 @@
 <body >
   <div style="text-align: center ;">
-     <p><i><u><b>Report</b></u></i></p>
-     </br>
-     <p style="color:red"><%= @report.title %></p>
+     <h2 style="color:red">Report: <%= @report.title %></h2>
      </br>
      <p style="color:black">Location:</p> <p><%= @report.address %> </p>
+     </br>
+     <p style="color:black">Time: </p> <p><%= @report.created_at %>
+     </br>
      <% if @report.description %>
      </br>
      <p style="color:black">Description: </p> <p><%= @report.description %>
+     </br>
+     </br>
      <% end %>
+     <img src="http://maps.googleapis.com/maps/api/streetview?size=600x400&location=<%=@report.latitude%>,%20<%=@report.longitude%>&sensor=false&key=AIzaSyD7MeJFEMlMvJ4-a5DWs9_hKGnP30IlhuQ" />
+     
+   
    </div>
   <!-- > Placeholder for map that lists only location of current event </!-->
 </body>
+
