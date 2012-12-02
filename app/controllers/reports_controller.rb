@@ -34,4 +34,11 @@ class ReportsController < ApplicationController
     respond_with @report
   end
 
+  def increment_count
+    @report = Report.find(params[:report_id])
+    @report.score = @report.score + 1
+    @report.save
+    respond_with @report
+  end
+
 end

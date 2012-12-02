@@ -2,6 +2,7 @@ $(document).ready ->
   $('button').button()
   $('#index-search-holder #search-submit').click(searchReports);
   navigator.geolocation.getCurrentPosition(browserGeolocationCallback)
+  $('.upvote').click(updateScore);
 
 browserGeolocationCallback = (position) ->
   console.log "position:"
@@ -36,9 +37,5 @@ searchReports = () ->
   })
 
 updateScore = () ->
-  $.ajax '/'
-    type: 'PUT'
-    data: {report: {score: 1} }
-    dataType: 'text/json'
-    success: (data, textStatus, jqXHR) ->
-      $('body').append "Successful AJAX call: #{data}"
+  id = $(this).closest('li').data('id');
+  $.post('/reports/'+id+'/increment_count'  )
