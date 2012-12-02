@@ -1,12 +1,12 @@
 <%= form_for @user do |f| %>
-  <% @user.errros.full_messages.each do |msg| %>
+  <% @user.errors.full_messages.each do |msg| %>
     <%= msg %>
   <% end %>
   <%= f.label :username %>
   <%= f.text_field :username %>
 
   <%= f.label :email %>
-  <%= f.test_field :email %>
+  <%= f.text_field :email %>
 
   <%= f.label :password%>
   <%= f.password_field :password %>
