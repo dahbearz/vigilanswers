@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202071448) do
+ActiveRecord::Schema.define(:version => 20121202170719) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20121202071448) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "address"
+    t.string   "sms"
   end
 
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"

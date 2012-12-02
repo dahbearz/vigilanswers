@@ -10,6 +10,7 @@ class ReportsController < ApplicationController
       flash[:notice] = "Event reported successfully."
       coords = {:latitude => @report.latitude, :longitude => @report.longitude}
       AlertMailer.alert_email(@report).deliver if User.near(coords.values, 20).present?
+      AlertMailer.sms_send(@report).deliver if User.near(coords.values, 20).present?
       redirect_to report_path(@report)
     else
       flash[:error] = "Unable to make event."

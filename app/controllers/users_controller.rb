@@ -41,7 +41,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
+    if params[:phone]
+      @user.sms = params[:phone] << User.carriers[params[:user][:sms].to_sym]
+    else
+      @user.sms = nil
+    end
+    
     respond_to do |format|
       format.html {
         if(@user.save)

@@ -4,7 +4,16 @@ class AlertMailer < ActionMailer::Base
   def alert_email(report)
       @report = report
       coords = {:longitude => report.latitude, :latitude => report.longitude}
+      nearby_users = User.near(coords.values, 20)
       #@url  = "http://example.com/login"
       mail(:to => nearby_users.all.map(&:email), :subject => "Vigilanswers Alert", :template_path => 'alert_mailer', :template_name => 'alert') if nearby_users
     end
+    
+  def sms_send(report)
+      @report = report
+      coords = {:longitude => report.latitude, :latitude => report.longitude}
+      nearby_users = User.near(coords.values, 20)
+      #@url  = "http://example.com/login"
+      mail(:to => nearby_users.all.map(&:sms).compact, :subject => "Vigilanswers Alert", :template_path => 'alert_mailer', :template_name => 'alert') if nearby_users
+  end
 end

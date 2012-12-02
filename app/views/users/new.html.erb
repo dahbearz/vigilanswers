@@ -13,6 +13,11 @@
 
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
+
+  <br />
+  Carrier:
+  <%= select :user, :sms, User.carriers.keys %>
+  <%= text_field_tag :phone, '', :placeholder => 'phone number (10 digits)' %>
   <%= f.submit %>
 
 <% end %>
