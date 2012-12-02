@@ -1,6 +1,6 @@
 class Report < ActiveRecord::Base
   # belongs_to :location
-  
+
   validates_presence_of :title
   #, :location_id
   attr_accessible :title, :description, :address
@@ -10,7 +10,7 @@ class Report < ActiveRecord::Base
   #has_one :location
 
   def calculate_score
-    return (@score - 1) / (refresh_hour_age + 2)**(1.8)
+    return (self.score) / (refresh_hour_age + 2)**(1.8)
   end
 
   def self.most_relavant(params)
@@ -26,7 +26,7 @@ class Report < ActiveRecord::Base
     ) if params[:category_id]
 
     list = list.limit(params[:limit] || 15)
-    list.sort_by { |a,b| a.calculate_score <=> b.calculate_score}
+    list.sort_by.reverse_each { |obj| obj.score}
 
     return list
   end
