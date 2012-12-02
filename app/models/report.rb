@@ -34,12 +34,14 @@ class Report < ActiveRecord::Base
     ) if params[:category_id]
 
     list = list.limit(params[:limit] || 15)
-    list.sort_by! { |obj| obj.score }
+    list.sort_by! { |obj| obj.calculate_score }
 
     return list.reverse!
   end
 
   def refresh_hour_age
-    @report_hour_age =  (Time.now - self.created_at) * 3600
+    self.report_hour_age = (Time.now - self.created_at) * 3600
+    self.save
+    return self.report_hour_age
   end
 end
