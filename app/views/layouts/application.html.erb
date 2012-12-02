@@ -11,7 +11,11 @@
     <%= csrf_meta_tags %>
   </head>
 <body>
-    <div style="text-align:right"> <%= link_to "Home", reports_path %> | <%= link_to "Submit Report", new_report_path %></div>
+    <div style="text-align:right">
+      <%= link_to "Home", reports_path %> |
+      <%= link_to "Submit Report", new_report_path %> |
+      <%= link_to "Login", login_path %>
+    </div>
     <div id='center'>
       <%= yield %>
     </div>
