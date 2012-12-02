@@ -56,8 +56,10 @@ Vigilanswers::Application.routes.draw do
   match "login", :to => 'user_sessions#new', :action => 'login'
   match "logout", :to => 'user_sessions#destroy', :action => 'logout'
 
-  resources :reports,
-    :controller => :reports
+  resources :reports do
+      post :increment_count
+    end
+
 
   # See how all your routes lay out with "rake routes"
 

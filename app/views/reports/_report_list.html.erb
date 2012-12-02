@@ -1,10 +1,9 @@
-Reports:
-<ul id='report-list' class='index'>
-<% @reports.each do |report| %>
-  <li class='report' data-latitude="<%= report.latitude %>" data-longitude="<%= report.longitude %>">
-    <img src="http://maps.googleapis.com/maps/api/streetview?size=175x100&location=<%= report.latitude %>,%20<%= report.longitude %>&sensor=false&key=AIzaSyD7MeJFEMlMvJ4-a5DWs9_hKGnP30IlhuQ" />
-    <%= link_to report.title, report %>
+<script id="report_list_item" type="text/html">
+  <li class='report' data-id='{{id}}' data-latitude='{{latitude}}' data-longitude='{{longitude}}'>
+<img src="http://maps.googleapis.com/maps/api/streetview?size=175x100&location={{latitude}},%20{{longitude}}&sensor=false&key=AIzaSyD7MeJFEMlMvJ4-a5DWs9_hKGnP30IlhuQ" />
+    <%= button_tag '+', :class => 'upvote' %>
+    <a href="/report/{{id}}">{{ title }}</a>
     <%= report.score%>
-  </li>
-<% end %>
-</ul>
+      {{score}}
+</li>
+</script>
