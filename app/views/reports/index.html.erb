@@ -1,14 +1,13 @@
 <div id='index' class='page-container'>
 
   <div id='map-container'>
-    <div id='map-holder'></div>
+    <div id='map-holder' data-latitude="" data-longitude=""></div>
   </div>
   <div id='index-search-holder' class='input-holder'>
     <label for='search'>Search by name:</label>
     <input type='text' id='search' />
     <button id='search-submit'>submit</button>
   </div>
-
   <div id='report-list'>
     <%= render :partial => 'report_list' %>
   </div>

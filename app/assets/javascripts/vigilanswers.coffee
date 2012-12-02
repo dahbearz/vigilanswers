@@ -1,13 +1,21 @@
 $(document).ready ->
   $('button').button()
+  $('#index-search-holder #search-submit').click(searchReports);
+  navigator.geolocation.getCurrentPosition(browserGeolocationCallback)
+
+browserGeolocationCallback = (position) ->
+  console.log "position:"
+  console.log position
   mapOptions = {
-    center: new google.maps.LatLng(-34.397, 150.644),
-    zoom: 8,
+    center: new google.maps.LatLng(
+      position.coords.latitude, position.coords.longitude
+    ),
+    zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
   self.map = new google.maps.Map(document.getElementById("map-holder"), mapOptions);
   mapReady();
-  $('#index-search-holder #search-submit').click(searchReports);
+
 
 mapReady = () ->
   console.log('mapready');
@@ -21,7 +29,7 @@ mapReady = () ->
 
 searchReports = () ->
   center = self.map.getCenter()
-  $.getJSON('/', data: { 
+  $.getJSON('/', { 
     title: $('#search').val(), 
     latitude: center.lat(),
     longitude: center.lng()

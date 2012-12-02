@@ -3,7 +3,7 @@ class Report < ActiveRecord::Base
 
   validates_presence_of :title
   #, :location_id
-  attr_accessible :title, :description, :address
+  attr_accessible :title, :description, :address, :score
   #,:location
   # accepts_nested_attributes_for :location
   has_and_belongs_to_many :categories
@@ -21,11 +21,21 @@ class Report < ActiveRecord::Base
     return (self.score) / (refresh_hour_age + 2)**(1.8)
   end
 
-  def self.most_relavant(params)
+  def self.most_relavant(params, coords)
+    unless coords[:latitude] && coords[:latitude] != 0
+      coords[:latitude] = 33.785645599999995 
+    end
+    unless coords[:longitude] && coords[:longitude] != 0
+      coords[:longitude] = -84.394973
+    end
+    coords.merge!({
+      latitude: params[:latitude], 
+      longitude: params[:longitude]
+    }) if params[:latitude] && params[:longitude]
     list = scoped
 
-    list = list.where("title like ?", params[:title]) if params[:title]
-    #list = list.where("location_id IN (:location)", :location => Location.near([params[:lat],params[:lon]],params[:range],:order => :distance)) if params[:lat] && params[:lon]
+    list = list.where("title ilike ?", params[:title]) if params[:title]
+    list = list.near(coords.values, params[:range] || 20)
 
     list = list.joins(:categories).where(
       categories_reports: {
@@ -33,10 +43,12 @@ class Report < ActiveRecord::Base
       }
     ) if params[:category_id]
 
+    list.order_values.prepend "- score / ((strftime('%s','now' - created_at) * 3600) << 2)"
+    #return (self.score) / (refresh_hour_age + 2)**(1.8)
     list = list.limit(params[:limit] || 15)
-    list.sort_by! { |obj| obj.calculate_score }
+    #list.sort_by! { |obj| - obj.calculate_score }
 
-    return list.reverse!
+    return list
   end
 
   def refresh_hour_age
