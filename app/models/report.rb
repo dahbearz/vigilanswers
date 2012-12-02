@@ -1,5 +1,5 @@
 class Report < ActiveRecord::Base
-  belongs_to :category
+  has_and_belongs_to_many :categories
   has_one :location
 
   def calculate_score
@@ -8,8 +8,16 @@ class Report < ActiveRecord::Base
 
   def self.most_relavant(params)
     list = scoped
-    list = list.where("title like ?", params[:title])
-    list = list.where("location_id IN (:location)", :location => Location.near([params[:lat],params[:lon]],params[:range]))
+    list = list.where("title like ?", params[:title]) if params[:title]
+    list = list.where("location_id IN (:location)", :location => Location.near([params[:lat],params[:lon]],params[:range],:order => :distance)) if params[:lat] && params[:lon]
+
+    list = list.joins(:categories).where(
+      categories_reports: {
+        category_id: params[:category_id]
+      }
+    ) if params[:category_id]
+
+    list = list.limit(params[:limit] || 15)
 
     list.sort_by { |a,b| a.calculate_score <=> b.calculate_score}
 
