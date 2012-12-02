@@ -2,7 +2,7 @@ Reports:
 <ul id='report-list' class='index'>
 <% @reports.each do |report| %>
   <li class='report' data-latitude='<%= report.latitude %>' data-longitude='<%= report.longitude %>'>
-    <%= report.title %>
+    <%= link_to report.title, report %>
     <%= report.score%>
   </li>
 <% end %>
