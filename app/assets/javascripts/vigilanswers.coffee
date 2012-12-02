@@ -29,8 +29,16 @@ mapReady = () ->
 
 searchReports = () ->
   center = self.map.getCenter()
-  $.getJSON('/', { 
-    title: $('#search').val(), 
+  $.getJSON('/', {
+    title: $('#search').val(),
     latitude: center.lat(),
     longitude: center.lng()
   })
+
+updateScore = () ->
+  $.ajax '/'
+    type: 'PUT'
+    data: {report: {score: 1} }
+    dataType: 'text/json'
+    success: (data, textStatus, jqXHR) ->
+      $('body').append "Successful AJAX call: #{data}"
