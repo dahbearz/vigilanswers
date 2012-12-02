@@ -2,7 +2,7 @@ Reports:
 <ul id='report-list' class='index'>
 <% @reports.each do |report| %>
   <li class='report' data-latitude="#{report.latitude}" data-longitude="#{report.longitude}">
-    <img src="http://maps.googleapis.com/maps/api/streetview?size=175x100&location=<%= report.latitude %>,%20<%= report.longitude %>&sensor=false&key=AIzaSyD7MeJFEMlMvJ4-a5DWs9_hKGnP30IlhuQ" />
+    <img src="http://maps.googleapis.com/maps/api/streetview?size=175x100&location=#{report.latitude},%20#{ report.longitude}&sensor=false&key=AIzaSyD7MeJFEMlMvJ4-a5DWs9_hKGnP30IlhuQ" />
     <%= link_to report.title, report %>
     <%= report.score%>
   </li>
