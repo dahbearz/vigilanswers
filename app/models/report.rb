@@ -43,6 +43,7 @@ class Report < ActiveRecord::Base
       }
     ) if params[:category_id]
 
+    #return (self.score) / (refresh_hour_age + 2)**(1.8)
     list = list.limit(params[:limit] || 15)
     if Rails.env.development?
       list.order_values.prepend "- score / ((strftime('%s','now' - created_at) * 3600) << 2)"

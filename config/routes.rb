@@ -49,12 +49,12 @@ Vigilanswers::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'reports#index'
-  
+
   resources :users
 
   resource :user_sessions
   match "login", :to => 'user_sessions#new', :action => 'login'
-  match "logout", :to => 'user_session#destroy', :action => 'logout'
+  match "logout", :to => 'user_sessions#destroy', :action => 'logout'
 
   resources :reports,
     :controller => :reports
