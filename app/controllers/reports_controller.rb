@@ -8,7 +8,8 @@ class ReportsController < ApplicationController
     @report = Report.new(params[:report])
     if @report.save
       flash[:notice] = "Event reported successfully."
-      AlertMailer.alert_email(@report).deliver
+      coords = {:longitude => @report.latitude, :latitude => @report.longitude}
+      AlertMailer.alert_email(@report).deliver if User.near(coords.values, 20).present?
       redirect_to report_path(@report)
     else
       flash[:error] = "Unable to make event."
