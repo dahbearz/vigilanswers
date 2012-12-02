@@ -52,8 +52,7 @@ class Report < ActiveRecord::Base
     list = list.limit(params[:limit] || 15)
 
     # gah...
-    db_adapter = ActiveRecord::Base.configurations[Rails.env]['adapter']
-    if db_adapter != 'postgresql' # sqlite
+    if Rails.env == "development"
       list.order_values.prepend "- score / ((strftime('%s','now' - created_at) * 3600) << 2)"
     else
       list.order_values.prepend "- score / pow((extract (epoch from 'now' - created_at) * 3600), 1.8)"
