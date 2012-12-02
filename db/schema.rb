@@ -11,12 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202021731) do
+ActiveRecord::Schema.define(:version => 20121202071448) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "categories_reports", :id => false, :force => true do |t|
+    t.integer "report_id"
+    t.integer "category_id"
   end
 
   create_table "locations", :force => true do |t|
@@ -64,6 +69,9 @@ ActiveRecord::Schema.define(:version => 20121202021731) do
     t.string   "current_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
   end
 
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"
