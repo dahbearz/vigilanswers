@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new
   end
-  
+
   def create
     @report = Report.new(params[:report])
     if @report.save
@@ -24,6 +24,6 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     respond_with @report
   end
-  
-  
+
+
 end

@@ -9,6 +9,14 @@ class Report < ActiveRecord::Base
   has_and_belongs_to_many :categories
   #has_one :location
 
+  geocoded_by :address
+  reverse_geocoded_by :latitude, :longitude
+
+  attr_accessible :latitude, :longitude, :address
+
+  validates_presence_of :address
+  after_validation :geocode, :reverse_geocode, :if => lambda{ |obj| obj.address_changed?}
+
   def calculate_score
     return (self.score) / (refresh_hour_age + 2)**(1.8)
   end
@@ -26,9 +34,9 @@ class Report < ActiveRecord::Base
     ) if params[:category_id]
 
     list = list.limit(params[:limit] || 15)
-    list.sort_by.reverse_each { |obj| obj.score}
+    list.sort_by! { |obj| obj.score }
 
-    return list
+    return list.reverse!
   end
 
   def refresh_hour_age
