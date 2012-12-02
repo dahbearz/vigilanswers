@@ -23,13 +23,13 @@ class Report < ActiveRecord::Base
 
   def self.most_relavant(params, coords)
     unless coords[:latitude] && coords[:latitude] != 0
-      coords[:latitude] = 33.785645599999995 
+      coords[:latitude] = 33.785645599999995
     end
     unless coords[:longitude] && coords[:longitude] != 0
       coords[:longitude] = -84.394973
     end
     coords.merge!({
-      latitude: params[:latitude], 
+      latitude: params[:latitude],
       longitude: params[:longitude]
     }) if params[:latitude] && params[:longitude]
     list = scoped
@@ -43,7 +43,7 @@ class Report < ActiveRecord::Base
       }
     ) if params[:category_id]
 
-    list.order_values.prepend "- score / ((strftime('%s','now' - created_at) * 3600) << 2)"
+    list.order_values.prepend "- score / (#{((Time.now - self.created_at) * 3600) << 2})"
     #return (self.score) / (refresh_hour_age + 2)**(1.8)
     list = list.limit(params[:limit] || 15)
     #list.sort_by! { |obj| - obj.calculate_score }
