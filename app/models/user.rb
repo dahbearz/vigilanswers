@@ -17,8 +17,8 @@ end
   end
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
-  
 
-  attr_accessible :username, :email, :password, :password_confirmation, :sms
+  attr_accessible :username, :email, :password, :password_confirmation, :sms, :address
+
   after_validation :geocode, :reverse_geocode, :if => lambda{ |obj| obj.address_changed? }
 end
