@@ -17,6 +17,6 @@ class Report < ActiveRecord::Base
   end
 
   def refresh_hour_age
-    @report_hour_age =  (self.updated_at - self.created_at) * 3600
+    @report_hour_age =  (Time.now - self.created_at) * 3600
   end
 end
