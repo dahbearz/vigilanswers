@@ -34,7 +34,7 @@ class Report < ActiveRecord::Base
     }) if params[:latitude] && params[:longitude]
     list = scoped
 
-    list = list.where("title ilike ?", params[:title]) if params[:title]
+    list = list.where("lower(title) like lower(?)", params[:title]) if params[:title]
     list = list.near(coords.values, params[:range] || 20)
 
     list = list.joins(:categories).where(
@@ -43,9 +43,14 @@ class Report < ActiveRecord::Base
       }
     ) if params[:category_id]
 
-    list.order_values.prepend "score / (((#{Time.now.to_i} - created_at) * 3600) << 2)"
     #return (self.score) / (refresh_hour_age + 2)**(1.8)
     list = list.limit(params[:limit] || 15)
+    if Rails.env.development?
+      list.order_values.prepend "- score / ((strftime('%s','now' - created_at) * 3600) << 2)"
+    else
+      list.order_values.prepend "- score / pow((extract (epoch from 'now' - created_at) * 3600), 2)"
+    end
+
     #list.sort_by! { |obj| - obj.calculate_score }
 
     return list
