@@ -2,7 +2,7 @@
   <li id='report{{id}}' class='report' data-id='{{id}}' data-latitude='{{latitude}}' data-longitude='{{longitude}}'>
 <img src="http://maps.googleapis.com/maps/api/streetview?size=175x100&location={{latitude}},%20{{longitude}}&sensor=false&key=AIzaSyD7MeJFEMlMvJ4-a5DWs9_hKGnP30IlhuQ" />
     <%= button_tag '+', :class => 'upvote' %>
-    <a href="/report/{{id}}">{{ title }}</a>
+    <a href="/reports/{{id}}">{{ title }}</a>
     <span class='score'>
       {{score}}
     </span>

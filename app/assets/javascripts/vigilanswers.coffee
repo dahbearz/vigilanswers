@@ -7,7 +7,6 @@ jQuery(document).ready ->
   jQuery('#index-search-holder #recenter-map').click(recenterMap)
   map_holder = jQuery('#map-holder')
   navigator.geolocation.getCurrentPosition(repositionMap)
-  console.log(jQuery('.upvote')[0])
 
   mapOptions = {
     center: new google.maps.LatLng(
@@ -34,6 +33,7 @@ mapReady = () ->
 addReport = (report) ->
   addMarker report
   jQuery('#report-list').append(ich.report_list_item(report))
+  jQuery('#report-list .upvote').one('click', updateScore)
 
 addMarker = (report) ->
   marker = new google.maps.Marker({
@@ -56,8 +56,11 @@ searchReports = () ->
   }, updateList
 
 updateScore = () ->
-  id = jQuery(this).closest('li').data('id')
-  jQuery.post('/reports/'+id+'/increment_count')
+  plus_btn = this
+  id = jQuery(plus_btn).closest('li').data('id')
+  jQuery.post('/reports/'+id+'/increment_count').success (data) ->
+    jQuery(plus_btn).closest('li').find('span.score').html(data.score)
+    jQuery(plus_btn).closest('li').attr('disabled', 'disabled')
 
 refreshReports = () ->
   center = self.map.getCenter()
