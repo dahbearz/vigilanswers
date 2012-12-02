@@ -1,8 +1,14 @@
-<body>
-  <p><%= @report.title %></p>
-  <p>Location: <%= @report.address %> </p>
-  <% if @report.description %>
-    <p>Description: <%= @report.description %>
-  <% end %>
+<body >
+  <div style="text-align: center ;">
+     <p><i><u><b>Report</b></u></i></p>
+     </br>
+     <p style="color:red"><%= @report.title %></p>
+     </br>
+     <p style="color:black">Location:</p> <p><%= @report.address %> </p>
+     <% if @report.description %>
+     </br>
+     <p style="color:black">Description: </p> <p><%= @report.description %>
+     <% end %>
+   </div>
   <!-- > Placeholder for map that lists only location of current event </!-->
 </body>
