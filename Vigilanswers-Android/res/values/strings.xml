@@ -1,0 +1,22 @@
+<resources>
+
+    <string name="app_name">Vigilanswers</string>
+    <string name="title_section1">Viewing</string>
+	<string name="title_section2">Reporting</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="title_activity_crime">CrimeActivity</string>
+    <string name="submit">Submit</string>
+    <string name="back">Back</string>
+    <string name="add_description">Tap to add a description&#8230; (Optional)</string>
+	<string name="add_title">Tap to add a title&#8230;</string>
+	<string name="add_description_title">Description</string>
+	<string name="add_title_title">Title</string>
+	<string name="map">View Reports on Map</string>
+	
+	<string-array 
+	    name="catagories">
+	    <item>Crime</item>
+	    <item>Black Market</item>
+	</string-array>
+	
+</resources>

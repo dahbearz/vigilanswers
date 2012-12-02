@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textColor="@android:color/white"
+        android:text="@string/submit"
+        android:onClick="submit"/>
+
+    <Spinner
+        android:id="@+id/catagory_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+   
+    <TextView
+        android:id="@+id/title_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_title_title"
+        android:layout_alignParentLeft="true"
+        android:textColor="@android:color/white"
+        android:layout_below="@id/catagory_spinner" />
+    
+    <EditText 
+        android:id="@+id/title_input"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/add_title"
+        android:inputType="text|textCapSentences"
+        android:selectAllOnFocus="true"
+        android:background="@android:color/white"
+        android:layout_below="@id/title_header"/>
+    
+    <TextView 
+        android:id="@+id/description_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/title_input" 
+        android:textColor="@android:color/white"
+        android:text="@string/add_description_title"/>
+    
+    <EditText
+        android:id="@+id/description_input"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white"
+        android:gravity="top"
+        android:hint="@string/add_description"
+        android:inputType="textMultiLine|textCapSentences"
+        android:layout_below="@id/description_header"
+        android:layout_above="@id/submit_button"/>
+    
+</RelativeLayout>
