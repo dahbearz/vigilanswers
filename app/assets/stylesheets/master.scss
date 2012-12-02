@@ -1,9 +1,10 @@
 $center_width: 750px;
 $page_bg: #ccc;
-$center_bg: #EEE;
+$center_bg: white; 
 $text_color: #6D6344;
 $glow_color: white;
 $glow_size: 50px;
+$wtf_top: -75px;
 * {
   margin: 0;
   padding: 0;
@@ -57,8 +58,30 @@ input[type='text'] {
   overflow: hidden;
   background: white;
   border-bottom: 2px solid #79C;
+  cursor: pointer;
   img {
     width: 100px;
     vertical-align: middle;
+    padding: 20px;
   }
+  &:hover {
+    background: #EEE;
+  }
+  a {
+    text-decoration: none;
+    color: #666;
+  }
+}
+#index-search-holder {
+  padding-left: 40px;
+  position: relative;
+  top: $wtf_top;
+}
+#report-list {
+  position: relative;
+  top: $wtf_top;
+}
+button {
+  padding: 10px;
+  border-radius: 10px;
 }
