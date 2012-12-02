@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  respond_to :json,:html
   def new
     @report = Report.new
   end
@@ -16,10 +17,12 @@ class ReportsController < ApplicationController
 
   def index
     @reports = Report.most_relavant(params)
+    respond_with @reports
   end
 
   def show
     @report = Report.find(params[:id])
+    respond_with @report
   end
   
   
