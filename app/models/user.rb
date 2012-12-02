@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
   
 
   attr_accessible :username, :email, :password, :password_confirmation
-  after_validation :geocode, :reverse_geocode, :if => lambda{ |obj| obj.address_changed?}
+  after_validation :geocode, :reverse_geocode, :if => lambda{ |obj| obj.address_changed? }
 end
