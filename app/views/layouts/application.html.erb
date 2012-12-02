@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html style="background-image: url(<%= image_path 'black.jpg' %>)">
   <head>
     <title>Vigilanswers</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="icon" type="image/ico" href="<%= image_path 'panda.ico' %>" />
+    <script src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js" type="text/javascript"></script>
+  	<script src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/scriptaculous.js" type="text/javascript"></script>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7MeJFEMlMvJ4-a5DWs9_hKGnP30IlhuQ&sensor=true"></script>
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css' />
     <%= csrf_meta_tags %>
   </head>
-<body>
-    <div style="text-align:right">
-      <%= link_to "Home", reports_path %> |
-      <%= link_to "Submit Report", new_report_path %> |
-      <%= link_to "Login", login_path %>
+<body >
+    <div style="text-align:left; position: fixed; top:0px; left:10px;">
+      <a href="<%=reports_path %>"><img border="0" id = "title2" alt="Login" src="<%= image_path 'home.png' %>" height="27pxpx"/></a>
     </div>
-    <div id='center'>
+    <div style="text-align:right; position: fixed; top:0px; right:7px;">
+      <a href="<%=new_report_path %>"><img border="0" id = "submitReport" alt="Submit Report" src="<%= image_path 'submit.png' %>" height="27pxpx"/></a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="<%=login_path %>"><img border="0" id = "login" alt="Login" src="<%= image_path 'login.png' %>" height="27pxpx"/></a>
+    </div>
+    <div id='center' >
+      <a href="<%=reports_path %>"><img border="0" id = "title" alt="Update/Edit Photo" src="<%= image_path 'title.png' %>" width="500pxpx"/></a>
       <%= yield %>
     </div>
 </body>
