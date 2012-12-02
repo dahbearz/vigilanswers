@@ -2,12 +2,12 @@ jQuery.noConflict
 markers = []
 jQuery(document).ready ->
   jQuery('button').button()
-  jQuery('#index-search-holder #search-submit').click(searchReports);
+  jQuery('#index-search-holder #search-submit').click(searchReports)
   jQuery('#index-search-holder #refresh-results').click(refreshReports)
   jQuery('#index-search-holder #recenter-map').click(recenterMap)
   map_holder = jQuery('#map-holder')
-  navigator.geolocation.getCurrentPosition(browserGeolocationCallback)
-  jQuery('.upvote').click(updateScore);
+  navigator.geolocation.getCurrentPosition(repositionMap)
+  console.log(jQuery('.upvote')[0])
 
   mapOptions = {
     center: new google.maps.LatLng(
@@ -17,10 +17,10 @@ jQuery(document).ready ->
     zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   }
-  self.map = new google.maps.Map(document.getElementById("map-holder"), mapOptions);
+  self.map = new google.maps.Map(document.getElementById("map-holder"), mapOptions)
   self.geocoder = new google.maps.Geocoder()
   navigator.geolocation.getCurrentPosition(repositionMap)
-  mapReady();
+  mapReady()
 
 repositionMap = (position) ->
   self.map.setCenter(
@@ -33,17 +33,17 @@ mapReady = () ->
 
 addReport = (report) ->
   addMarker report
-  jQuery('#report-list').append(ich.report_list_item(report));
+  jQuery('#report-list').append(ich.report_list_item(report))
 
 addMarker = (report) ->
   marker = new google.maps.Marker({
     position: new google.maps.LatLng(report.latitude, report.longitude),
     map: self.map,
     title:"Hello World!"
-  });
+  })
   markers.push marker
 
-clearMarkers = ->
+clearMarkers = () ->
   marker.setMap(null) for marker in markers
 
 searchReports = () ->
@@ -56,8 +56,8 @@ searchReports = () ->
   }, updateList
 
 updateScore = () ->
-  id = $(this).closest('li').data('id');
-  $.post('/reports/'+id+'/increment_count')
+  id = jQuery(this).closest('li').data('id')
+  jQuery.post('/reports/'+id+'/increment_count')
 
 refreshReports = () ->
   center = self.map.getCenter()
@@ -69,7 +69,7 @@ refreshReports = () ->
 
 recenterMap = () ->
   address_val = jQuery('#recenter').val()
-  self.geocoder.geocode {address: address_val}, (resp)->
+  self.geocoder.geocode {address: address_val}, (resp) ->
     console.log resp
     loc = resp[0].geometry.location
     repositionMap({coords: {latitude: loc.lat(), longitude: loc.lng()}})
