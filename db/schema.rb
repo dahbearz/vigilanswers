@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202071448) do
+ActiveRecord::Schema.define(:version => 20121202171905) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -56,12 +56,12 @@ ActiveRecord::Schema.define(:version => 20121202071448) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :force => true do |t|
-    t.string   "username",                         :null => false
-    t.string   "email",                            :null => false
-    t.string   "crypted_password",                 :null => false
-    t.string   "password_salt",                    :null => false
-    t.string   "persistence_token",                :null => false
-    t.integer  "login_count",       :default => 0, :null => false
+    t.string   "username",                               :null => false
+    t.string   "email",                                  :null => false
+    t.string   "crypted_password",                       :null => false
+    t.string   "password_salt",                          :null => false
+    t.string   "persistence_token",                      :null => false
+    t.integer  "login_count",       :default => 0,       :null => false
     t.datetime "last_request_at"
     t.datetime "last_login_at"
     t.datetime "current_login_at"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20121202071448) do
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "address"
+    t.string   "address",           :default => "30332"
   end
 
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"

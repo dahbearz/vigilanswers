@@ -41,17 +41,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
-    respond_to do |format|
-      format.html {
-        if(@user.save)
-          flash[:notice] = "Account registered!"
-          redirect_to(user_path(@user))
-        else
-          render(:action => :new)
-        end
-      }
-      format.xml { render :xml => @user }
+    @user.address = "Atlanta, GA"
+    if(@user.save)
+      flash[:notice] = "Account registered!"
+      redirect_to(root_path)
+    else
+      render(:action => :new)
     end
   end
 
