@@ -1,6 +1,7 @@
-$(document).ready ->
-  $('button').button()
-  $('#index-search-holder #search-submit').click(searchReports);
+jQuery.noConflict
+jQuery(document).ready ->
+  jQuery('button').button()
+  jQuery('#index-search-holder #search-submit').click(searchReports);
   navigator.geolocation.getCurrentPosition(browserGeolocationCallback)
 
 browserGeolocationCallback = (position) ->
@@ -19,8 +20,8 @@ browserGeolocationCallback = (position) ->
 
 mapReady = () ->
   console.log('mapready');
-  $('#report-list .report').each ->
-    report = $(this)
+  jQuery('#report-list .report').each ->
+    report = jQuery(this)
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(report.data('latitude'), report.data('longitude')),
       map: self.map,
@@ -30,7 +31,7 @@ mapReady = () ->
 searchReports = () ->
   center = self.map.getCenter()
   $.getJSON('/', { 
-    title: $('#search').val(), 
+    title: jQuery('#search').val(), 
     latitude: center.lat(),
     longitude: center.lng()
   })

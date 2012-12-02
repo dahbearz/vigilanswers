@@ -9,13 +9,20 @@ $glow_size: 50px;
   padding: 0;
 }
 html, body {
-  background: $page_bg;
+  
   height: 100%;
   margin: 0;
   padding: 0;
   display: block;
   font-family: 'Droid Sans', sans-serif;
   color: $text_color;
+}
+#title{
+  position:relative;
+  bottom: 82px;
+  left: 122px;
+  z-index: 1000;
+  cursor: pointer;
 }
 #center {
   position: relative;
@@ -29,16 +36,21 @@ html, body {
   border-style: solid;
   border-color: white;
   box-shadow: 0px 0px $glow_size $glow_color;
+  margin-top: 150px;
+  margin-bottom: 300px;
 }
 #map-holder {
   width: $center_width;
-  height: 300px;
+  height: 430px;
+  top:-100px;
+  margin-bottom:0px;
 }
 input[type='text'] {
   border-radius: 10px;
   padding: 8px;
   width: 25%;
   outline: none;
+  margin-bottom: 30px;
 }
 #report-list li {
   list-style-type: none;
