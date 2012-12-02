@@ -20,7 +20,11 @@
     <div style="text-align:right; position: fixed; top:0px; right:7px;">
       <a href="<%=new_report_path %>"><img border="0" id = "submitReport" alt="Submit Report" src="<%= image_path 'submit.png' %>" height="27pxpx"/></a>
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="<%=login_path %>"><img border="0" id = "login" alt="Login" src="<%= image_path 'login.png' %>" height="27pxpx"/></a>
+      <% if current_user%>
+        <a href="<%=logout_path %>"><img border="0" id = "login" alt="Login" src="<%= image_path 'login.png' %>" height="27pxpx"/>logout</a>
+      <% else %>
+        <a href="<%=login_path %>"><img border="0" id = "login" alt="Login" src="<%= image_path 'login.png' %>" height="27pxpx"/></a>
+      <% end %>
     </div>
     <div id='center' >
       <a href="<%=reports_path %>"><img border="0" id = "title" alt="Update/Edit Photo" src="<%= image_path 'title.png' %>" width="500pxpx"/></a>
