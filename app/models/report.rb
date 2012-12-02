@@ -43,7 +43,7 @@ class Report < ActiveRecord::Base
       }
     ) if params[:category_id]
 
-    list.order_values.prepend "#{- score / (((Time.now - self.created_at) * 3600) << 2)}"
+    list.order_values.prepend "- score / (((Time.now - self.created_at) * 3600) << 2)"
     #return (self.score) / (refresh_hour_age + 2)**(1.8)
     list = list.limit(params[:limit] || 15)
     #list.sort_by! { |obj| - obj.calculate_score }
