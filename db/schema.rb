@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121201195952) do
+ActiveRecord::Schema.define(:version => 20121202004822) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(:version => 20121201195952) do
   end
 
   create_table "locations", :force => true do |t|
-    t.integer "latitude",  :limit => 8
-    t.integer "longitude", :limit => 8
-    t.string  "address"
+    t.float  "latitude",  :limit => 8
+    t.float  "longitude", :limit => 8
+    t.string "address"
   end
 
   create_table "reports", :force => true do |t|
@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(:version => 20121201195952) do
     t.integer "location_id"
     t.text    "description"
     t.boolean "resolved"
-    t.integer "longitude"
-    t.integer "latitude"
+    t.float   "longitude"
+    t.float   "latitude"
     t.integer "report_hour_age"
     t.integer "category_id"
+    t.string  "address"
   end
 
   create_table "sessions", :force => true do |t|

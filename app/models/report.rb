@@ -1,8 +1,12 @@
 class Report < ActiveRecord::Base
   belongs_to :category
-  belongs_to :location
+  # belongs_to :location
   
-  validates_presence_of :title, :location_id
+  validates_presence_of :title
+  #, :location_id
+  attr_accessible :title, :description, :address
+  #,:location
+  # accepts_nested_attributes_for :location
   
   def calculate_score
     return (@vote - 1) / (refresh_hour_age + 2)**(1.8)
@@ -11,7 +15,7 @@ class Report < ActiveRecord::Base
   def self.most_relavant(params)
     list = scoped
     list = list.where("title like ?", params[:title])
-    list = list.where("location_id IN (:location)", :location => Location.near([params[:lat],params[:lon]],params[:range]))
+    # list = list.where("location_id IN (:location)", :location => Location.near([params[:lat],params[:lon]],params[:range]))
 
     list.sort_by { |a,b| a.calculate_score <=> b.calculate_score}
 

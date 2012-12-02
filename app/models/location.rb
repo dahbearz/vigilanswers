@@ -6,5 +6,5 @@ class Location < ActiveRecord::Base
   attr_accessible :latitude, :longitude, :address
   
   validates_presence_of :address
-  after_validation :geocode, :reverse_geocode, :if => lamda{ |obj| obj.address_changed?}
+  after_validation :geocode, :reverse_geocode, :if => lambda{ |obj| obj.address_changed?}
 end

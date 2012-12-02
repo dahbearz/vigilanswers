@@ -4,10 +4,10 @@ class ReportsController < ApplicationController
   end
   
   def create
-    report = @report
-    if report.save
+    @report = Report.new(params[:report])
+    if @report.save
       flash[:notice] = "Event reported successfully."
-      render :action => :show
+      redirect_to report_path(@report)
     else
       flash[:error] = "Unable to make event."
       render :action => :new
@@ -19,6 +19,7 @@ class ReportsController < ApplicationController
   end
 
   def show
+    @report = Report.find(params[:id])
   end
   
   
